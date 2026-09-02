@@ -3,12 +3,12 @@
     <HeroBanner />
 
     <div class="sticky top-[57px] z-40 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b border-gray-100 dark:border-zinc-800">
-      <div class="max-w-7xl mx-auto px-4">
+      <div class="max-w-[1400px] mx-auto px-4">
         <div class="flex items-center gap-0.5 overflow-x-auto py-2 no-scrollbar">
           <button
             v-for="cat in categories"
             :key="cat.id"
-            @click="activeCategoryId = cat.id"
+            @click="scrollToCategory(cat.id)"
             class="shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition"
             :class="activeCategoryId === cat.id
               ? 'text-white'
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <main class="max-w-7xl mx-auto px-4 py-6">
+    <main class="max-w-[1400px] mx-auto px-4 py-6">
       <TagFilterBar />
 
       <div v-if="loading" class="flex items-center justify-center min-h-[300px]">
@@ -39,29 +39,41 @@
         </div>
       </div>
 
-      <template v-else>
-        <template v-if="isFiltering">
-          <div v-if="filteredBookmarks.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
-            <BookmarkCard
-              v-for="bm in filteredBookmarks"
-              :key="bm.id"
-              :bookmark="bm"
-              @edit="$emit('editBookmark', $event)"
-              @delete="$emit('deleteBookmark', $event)"
-            />
-          </div>
-          <EmptyState v-else message="没有找到匹配的网址" hint="试试其他关键词或清除筛选" />
-        </template>
+      <template v-else-if="isFiltering">
+        <div v-if="filteredBookmarks.length" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+          <BookmarkCard
+            v-for="bm in filteredBookmarks"
+            :key="bm.id"
+            :bookmark="bm"
+            @edit="$emit('editBookmark', $event)"
+            @delete="$emit('deleteBookmark', $event)"
+          />
+        </div>
+        <EmptyState v-else message="没有找到匹配的网址" hint="试试其他关键词或清除筛选" />
+      </template>
 
-        <template v-else-if="activeCategory">
+      <template v-else>
+        <div v-if="!categories.length">
+          <EmptyState
+            message="还没有任何分类"
+            :hint="isEditMode ? '点击编辑模式添加第一个分类' : ''"
+          />
+        </div>
+
+        <section
+          v-for="cat in categories"
+          :key="cat.id"
+          :id="'cat-' + cat.id"
+          class="mb-8"
+        >
           <div class="flex items-center gap-2 mb-4">
-            <span class="text-lg">{{ activeCategory.icon }}</span>
-            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{{ activeCategory.name }}</h2>
-            <span class="text-xs text-gray-400 dark:text-zinc-500 ml-1">{{ activeItems.length }} 个网址</span>
+            <span class="text-lg">{{ cat.icon }}</span>
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{{ cat.name }}</h2>
+            <span class="text-xs text-gray-400 dark:text-zinc-500 ml-1">{{ catBookmarks(cat.id).length }} 个网址</span>
 
             <div v-if="isEditMode" class="ml-auto flex items-center gap-1">
               <button
-                @click="$emit('editCategory', activeCategory)"
+                @click="$emit('editCategory', cat)"
                 class="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition"
               >
                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +81,7 @@
                 </svg>
               </button>
               <button
-                @click="$emit('deleteCategory', activeCategory.id)"
+                @click="$emit('deleteCategory', cat.id)"
                 class="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition"
               >
                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,17 +92,17 @@
           </div>
 
           <VueDraggable
-            v-model="draggableItems"
+            v-model="draggableMap[cat.id]"
             :disabled="!isEditMode"
             :animation="200"
             ghost-class="sortable-ghost"
             drag-class="sortable-drag"
             group="bookmarks"
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3"
-            @end="onDragEnd"
+            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3"
+            @end="onDragEnd(cat.id)"
           >
             <BookmarkCard
-              v-for="bm in activeItems"
+              v-for="bm in catBookmarks(cat.id)"
               :key="bm.id"
               :bookmark="bm"
               @edit="$emit('editBookmark', $event)"
@@ -98,28 +110,22 @@
             />
           </VueDraggable>
 
-          <div v-if="isEditMode" class="mt-4">
+          <div v-if="isEditMode" class="mt-3">
             <button
-              @click="$emit('addBookmark', activeCategory.id)"
-              class="w-full py-3 rounded-lg border border-dashed border-gray-200 dark:border-zinc-800 text-sm text-gray-400 dark:text-zinc-500 hover:border-gray-400 dark:hover:border-zinc-600 hover:text-gray-600 dark:hover:text-zinc-400 transition"
+              @click="$emit('addBookmark', cat.id)"
+              class="w-full py-2.5 rounded-lg border border-dashed border-gray-200 dark:border-zinc-800 text-sm text-gray-400 dark:text-zinc-500 hover:border-gray-400 dark:hover:border-zinc-600 hover:text-gray-600 dark:hover:text-zinc-400 transition"
             >
               + 添加网址
             </button>
           </div>
-        </template>
-
-        <EmptyState
-          v-else
-          message="还没有任何分类"
-          :hint="isEditMode ? '点击编辑模式添加第一个分类' : ''"
-        />
+        </section>
       </template>
     </main>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
 import { useBookmarksStore } from '../stores/bookmarks.js'
 import { useAuthStore } from '../stores/auth.js'
@@ -153,27 +159,52 @@ watch(categories, (cats) => {
   }
 }, { immediate: true })
 
-const activeCategory = computed(() =>
-  categories.value.find(c => c.id === activeCategoryId.value) || null
-)
+function catBookmarks(catId) {
+  return bookmarksStore.bookmarks.filter(b => b.categoryId === catId)
+}
 
-const activeItems = computed(() =>
-  bookmarksStore.bookmarks.filter(b => b.categoryId === activeCategoryId.value)
-)
-
-const draggableItems = computed({
-  get: () => activeItems.value,
-  set: () => {},
+const draggableMap = computed(() => {
+  const map = {}
+  categories.value.forEach(cat => {
+    map[cat.id] = catBookmarks(cat.id)
+  })
+  return map
 })
 
-function onDragEnd() {
-  const idOrder = activeItems.value.map(b => b.id)
-  // Reorder within the category
-  const allItems = bookmarksStore.bookmarks.filter(b => b.categoryId !== activeCategoryId.value)
+function scrollToCategory(catId) {
+  activeCategoryId.value = catId
+  const el = document.getElementById('cat-' + catId)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
+function onDragEnd(catId) {
+  const items = catBookmarks(catId)
+  const idOrder = items.map(b => b.id)
+  const allItems = bookmarksStore.bookmarks.filter(b => b.categoryId !== catId)
   const ordered = idOrder.map(id => bookmarksStore.bookmarks.find(b => b.id === id)).filter(Boolean)
   bookmarksStore.bookmarks = [...allItems, ...ordered]
   bookmarksStore.markDirty()
 }
+
+function onScroll() {
+  const sections = categories.value.map(cat => ({
+    id: cat.id,
+    el: document.getElementById('cat-' + cat.id),
+  })).filter(s => s.el)
+
+  const scrollTop = window.scrollY + 120
+  for (let i = sections.length - 1; i >= 0; i--) {
+    if (sections[i].el.offsetTop <= scrollTop) {
+      activeCategoryId.value = sections[i].id
+      break
+    }
+  }
+}
+
+onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <style scoped>
