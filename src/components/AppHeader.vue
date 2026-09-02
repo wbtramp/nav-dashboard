@@ -20,6 +20,7 @@
       </div>
 
       <div class="flex items-center gap-2 ml-auto">
+        <AccentColorPicker v-if="auth.isEditMode" />
         <ThemeToggle />
         <EditModeToggle />
         <button
@@ -49,6 +50,7 @@ import { useAuthStore } from '../stores/auth.js'
 import { useUiStore } from '../stores/ui.js'
 import ThemeToggle from './ThemeToggle.vue'
 import EditModeToggle from './EditModeToggle.vue'
+import AccentColorPicker from './AccentColorPicker.vue'
 
 const bookmarks = useBookmarksStore()
 const auth = useAuthStore()

@@ -4,7 +4,8 @@
     :class="ui.bannerCollapsed ? 'h-11' : 'h-[200px] md:h-[220px]'"
     @click="ui.toggleBanner()"
   >
-    <div class="absolute inset-0 bg-white dark:bg-zinc-950" />
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, var(--accent-bg), transparent 60%);" />
+    <div class="absolute inset-0 bg-white/70 dark:bg-zinc-950/70" />
 
     <div
       class="relative h-full flex flex-col items-center justify-center transition-opacity duration-300"

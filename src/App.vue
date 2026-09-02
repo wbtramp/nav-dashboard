@@ -8,77 +8,26 @@
       <div class="flex-1 min-w-0">
         <!-- Navigation Module -->
         <template v-if="ui.activeModule === 'navigation'">
-          <HeroBanner />
-
-          <main class="max-w-7xl mx-auto px-4 py-6">
-            <TagFilterBar />
-
-            <div v-if="loading" class="flex items-center justify-center min-h-[300px]">
-              <div class="text-center">
-                <div class="w-8 h-8 border-4 border-zinc-200 border-t-zinc-500 rounded-full animate-spin mx-auto mb-4" />
-                <p class="text-gray-400">加载中...</p>
-              </div>
-            </div>
-
-            <div v-else-if="loadError" class="flex items-center justify-center min-h-[300px]">
-              <div class="text-center">
-                <p class="text-zinc-800 dark:text-zinc-200 text-lg mb-2">加载失败</p>
-                <p class="text-gray-400 text-sm mb-4">{{ loadError }}</p>
-                <button @click="loadData" class="px-4 py-2 rounded-lg bg-gray-900 text-white text-sm hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 transition">重试</button>
-              </div>
-            </div>
-
-            <template v-else>
-              <template v-if="bookmarksStore.isFiltering">
-                <div v-if="bookmarksStore.filteredBookmarks.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
-                  <BookmarkCard
-                    v-for="bm in bookmarksStore.filteredBookmarks"
-                    :key="bm.id"
-                    :bookmark="bm"
-                    @edit="openEditBookmark"
-                    @delete="onDeleteBookmark"
-                  />
-                </div>
-                <EmptyState v-else message="没有找到匹配的网址" hint="试试其他关键词或清除筛选" />
-              </template>
-
-              <template v-else>
-                <div v-if="bookmarksStore.categories.length">
-                  <div v-if="auth.isEditMode" class="mb-4">
-                    <button
-                      @click="openAddCategory"
-                      class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 transition"
-                    >
-                      + 添加分类
-                    </button>
-                  </div>
-
-                  <CategorySection
-                    v-for="cat in bookmarksStore.categories"
-                    :key="cat.id"
-                    :category="cat"
-                    :items="bookmarksStore.bookmarksByCategory.get(cat.id) || []"
-                    @editCategory="openEditCategory"
-                    @deleteCategory="onDeleteCategory"
-                    @editBookmark="openEditBookmark"
-                    @deleteBookmark="onDeleteBookmark"
-                    @addBookmark="openAddBookmark"
-                    @reorder="onReorder"
-                  />
-                </div>
-                <EmptyState
-                  v-else
-                  message="还没有任何分类"
-                  :hint="auth.isEditMode ? '点击上方按钮添加第一个分类' : ''"
-                />
-              </template>
-            </template>
-          </main>
+          <NavigationView
+            :loading="loading"
+            :load-error="loadError"
+            @retry="loadData"
+            @edit-bookmark="openEditBookmark"
+            @delete-bookmark="onDeleteBookmark"
+            @edit-category="openEditCategory"
+            @delete-category="onDeleteCategory"
+            @add-bookmark="openAddBookmark"
+          />
         </template>
 
         <!-- Notes Module -->
         <template v-else-if="ui.activeModule === 'notes'">
           <NotesView />
+        </template>
+
+        <!-- Feishu Module -->
+        <template v-else-if="ui.activeModule === 'feishu'">
+          <FeishuView />
         </template>
 
         <!-- Knowledge Module -->
@@ -120,15 +69,12 @@ import { useAutoSave } from './composables/useAutoSave.js'
 import { fetchBookmarks, saveBookmarks } from './services/github.js'
 import AppHeader from './components/AppHeader.vue'
 import Sidebar from './components/Sidebar.vue'
-import HeroBanner from './components/HeroBanner.vue'
-import TagFilterBar from './components/TagFilterBar.vue'
-import CategorySection from './components/CategorySection.vue'
-import BookmarkCard from './components/BookmarkCard.vue'
+import NavigationView from './components/NavigationView.vue'
 import BookmarkEditDialog from './components/BookmarkEditDialog.vue'
 import CategoryEditDialog from './components/CategoryEditDialog.vue'
 import OwnerLoginDialog from './components/OwnerLoginDialog.vue'
-import EmptyState from './components/EmptyState.vue'
 import NotesView from './components/notes/NotesView.vue'
+import FeishuView from './components/feishu/FeishuView.vue'
 import KnowledgeView from './components/knowledge/KnowledgeView.vue'
 
 const bookmarksStore = useBookmarksStore()
@@ -152,6 +98,9 @@ async function loadData() {
   try {
     const result = await fetchBookmarks(auth.pat || undefined)
     bookmarksStore.setData(result.data, result.sha)
+    if (bookmarksStore.settings.accentColor) {
+      ui.setAccentColor(bookmarksStore.settings.accentColor)
+    }
   } catch (e) {
     loadError.value = e.message
   } finally {
@@ -223,11 +172,6 @@ function onDeleteCategory(id) {
     bookmarksStore.removeCategory(id)
     triggerSave()
   }
-}
-
-function onReorder(catId, idList) {
-  bookmarksStore.reorderInCategory(catId, idList)
-  triggerSave()
 }
 
 async function triggerSave() {

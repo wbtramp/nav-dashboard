@@ -68,13 +68,28 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">内容</label>
+            <div class="flex items-center justify-between mb-1">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">内容</label>
+              <button
+                type="button"
+                @click="handleImageUpload"
+                :disabled="uploading"
+                class="flex items-center gap-1 px-2 py-1 rounded text-xs text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-300 hover:bg-gray-100 dark:hover:bg-zinc-800 transition disabled:opacity-50"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                {{ uploading ? '上传中...' : '上传图片' }}
+              </button>
+            </div>
             <textarea
+              ref="textareaRef"
               v-model="form.content"
               rows="10"
               class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-zinc-400 resize-y"
               placeholder="支持 Markdown 语法..."
             />
+            <p v-if="uploadError" class="text-xs text-red-500 mt-1">{{ uploadError }}</p>
           </div>
         </div>
 
@@ -96,6 +111,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+import { useImageUpload } from '../../composables/useImageUpload.js'
 
 const props = defineProps({
   visible: { type: Boolean, default: false },
@@ -105,6 +121,8 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'save'])
 
+const { uploading, uploadError, upload, triggerFileSelect } = useImageUpload()
+const textareaRef = ref(null)
 const form = ref({ title: '', content: '', type: 'quick', categoryId: '', tags: [] })
 const tagInput = ref('')
 
@@ -133,6 +151,20 @@ function addTags() {
 
 function removeTag(tag) {
   form.value.tags = form.value.tags.filter(t => t !== tag)
+}
+
+async function handleImageUpload() {
+  const file = await triggerFileSelect()
+  if (!file) return
+  try {
+    const url = await upload(file)
+    const ta = textareaRef.value
+    const start = ta.selectionStart
+    const end = ta.selectionEnd
+    const text = form.value.content
+    const imgMd = `![${file.name}](${url})`
+    form.value.content = text.slice(0, start) + imgMd + text.slice(end)
+  } catch {}
 }
 
 function handleSave() {

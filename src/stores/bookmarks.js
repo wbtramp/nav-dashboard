@@ -7,7 +7,7 @@ import { genId } from '../utils/id.js'
 export const useBookmarksStore = defineStore('bookmarks', () => {
   const categories = ref([])
   const bookmarks = ref([])
-  const settings = ref({ theme: 'system', title: 'Nav Dashboard' })
+  const settings = ref({ theme: 'system', title: 'Nav Dashboard', accentColor: '#863bff', feishuPages: [] })
   const sha = ref(null)
   const status = ref('idle') // idle | loading | dirty | saving | error | conflict
   const lastError = ref('')
@@ -45,7 +45,13 @@ export const useBookmarksStore = defineStore('bookmarks', () => {
   function setData(data, fileSha) {
     categories.value = data.categories || []
     bookmarks.value = data.bookmarks || []
-    settings.value = data.settings || { theme: 'system', title: 'Nav Dashboard' }
+    const s = data.settings || {}
+    settings.value = {
+      theme: s.theme || 'system',
+      title: s.title || 'Nav Dashboard',
+      accentColor: s.accentColor || '#863bff',
+      feishuPages: s.feishuPages || [],
+    }
     sha.value = fileSha
     status.value = 'idle'
   }

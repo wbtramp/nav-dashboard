@@ -1,5 +1,5 @@
 <template>
-  <div class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300" v-html="rendered" />
+  <div class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 markdown-body" v-html="rendered" />
 </template>
 
 <script setup>
@@ -18,3 +18,11 @@ const rendered = computed(() => {
   }
 })
 </script>
+
+<style scoped>
+.markdown-body :deep(img) {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin: 0.75rem 0;
+}
+</style>

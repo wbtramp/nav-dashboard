@@ -2,6 +2,12 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  --accent: #863bff;
+  --accent-light: #a66fff;
+  --accent-bg: rgba(134, 59, 255, 0.08);
+}
+
 @theme {
   --color-brand-50: #fafafa;
   --color-brand-100: #f4f4f5;

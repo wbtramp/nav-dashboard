@@ -69,3 +69,11 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString('zh-CN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
 }
 </script>
+
+<style scoped>
+:deep(img) {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+}
+</style>

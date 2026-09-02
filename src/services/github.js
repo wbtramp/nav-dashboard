@@ -142,3 +142,38 @@ export async function savePrivateFile(pat, path, content, sha, message) {
   const json = await res.json()
   return { sha: json.content.sha }
 }
+
+export async function uploadImage(pat, file) {
+  const MAX_SIZE = 5 * 1024 * 1024
+  if (file.size > MAX_SIZE) {
+    throw new Error('图片大小不能超过 5MB')
+  }
+
+  const buffer = await file.arrayBuffer()
+  const bytes = new Uint8Array(buffer)
+  let binary = ''
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i])
+  }
+  const base64 = btoa(binary)
+
+  const ext = file.name.split('.').pop().toLowerCase()
+  const timestamp = Date.now()
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_').replace(/\.[^.]+$/, '')
+  const path = `images/${timestamp}-${safeName}.${ext}`
+
+  const body = {
+    message: `chore: upload image ${path}`,
+    content: base64,
+    branch: GITHUB_BRANCH,
+  }
+  const url = `${API_BASE}/repos/${GITHUB_OWNER}/${PRIVATE_REPO}/contents/${path}`
+  const res = await fetch(url, {
+    method: 'PUT',
+    headers: headers(pat),
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) throw new Error(`上传图片失败: ${res.status} ${res.statusText}`)
+
+  return `https://raw.githubusercontent.com/${GITHUB_OWNER}/${PRIVATE_REPO}/${GITHUB_BRANCH}/${path}`
+}
