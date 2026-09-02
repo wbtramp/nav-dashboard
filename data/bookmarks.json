@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-02T05:08:16.648Z",
+  "updatedAt": "2026-09-02T07:01:18.446Z",
   "settings": {
     "title": "Nav Dashboard",
     "feishuPages": []
@@ -627,6 +627,17 @@
       ],
       "icon": null,
       "pinned": false
+    },
+    {
+      "id": "0639e0ba-ff4a-476f-9d6f-f41cd34616e9",
+      "title": "豆包",
+      "url": "https://www.doubao.com/chat",
+      "description": "",
+      "categoryId": "cat-common",
+      "tags": [],
+      "icon": null,
+      "pinned": false,
+      "createdAt": "2026-09-02T07:01:18.446Z"
     }
   ]
 }
