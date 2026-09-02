@@ -1,81 +1,632 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-02T10:00:00.000Z",
+  "updatedAt": "2026-09-02T05:08:16.648Z",
   "settings": {
-    "theme": "system",
-    "title": "我的导航"
+    "title": "Nav Dashboard",
+    "feishuPages": []
   },
   "categories": [
-    { "id": "cat-dev", "name": "开发工具", "icon": "💻", "collapsed": false },
-    { "id": "cat-learn", "name": "学习资源", "icon": "📚", "collapsed": false },
-    { "id": "cat-daily", "name": "日常使用", "icon": "🌐", "collapsed": false }
+    {
+      "id": "cat-common",
+      "name": "常用网站",
+      "icon": "⚡",
+      "collapsed": false
+    },
+    {
+      "id": "cat-ynj",
+      "name": "优能佳品宣资料库",
+      "icon": "📋",
+      "collapsed": false
+    },
+    {
+      "id": "cat-ai-image",
+      "name": "AI生图工具",
+      "icon": "🤖",
+      "collapsed": false
+    },
+    {
+      "id": "cat-material",
+      "name": "常用图片素材",
+      "icon": "🎨",
+      "collapsed": false
+    },
+    {
+      "id": "cat-prompt",
+      "name": "AI提示词",
+      "icon": "💬",
+      "collapsed": false
+    },
+    {
+      "id": "cat-tools",
+      "name": "在线图片处理工具",
+      "icon": "🖼",
+      "collapsed": false
+    },
+    {
+      "id": "cat-design",
+      "name": "素材&设计",
+      "icon": "✏️",
+      "collapsed": false
+    },
+    {
+      "id": "cat-ent",
+      "name": "娱乐世界",
+      "icon": "🎬",
+      "collapsed": false
+    },
+    {
+      "id": "cat-vpn",
+      "name": "VPN 梯子",
+      "icon": "🌐",
+      "collapsed": false
+    },
+    {
+      "id": "cat-nav",
+      "name": "导航网址",
+      "icon": "🧭",
+      "collapsed": false
+    },
+    {
+      "id": "cat-copy",
+      "name": "文案",
+      "icon": "📝",
+      "collapsed": false
+    },
+    {
+      "id": "cat-video",
+      "name": "视频特效",
+      "icon": "🎞",
+      "collapsed": false
+    },
+    {
+      "id": "cat-svg",
+      "name": "在线生成矢量",
+      "icon": "📐",
+      "collapsed": false
+    },
+    {
+      "id": "cat-news",
+      "name": "新闻",
+      "icon": "📰",
+      "collapsed": false
+    },
+    {
+      "id": "cat-package",
+      "name": "包装",
+      "icon": "📦",
+      "collapsed": false
+    },
+    {
+      "id": "cat-font",
+      "name": "字体",
+      "icon": "🔤",
+      "collapsed": false
+    },
+    {
+      "id": "cat-mockup",
+      "name": "样机 插画",
+      "icon": "🖌",
+      "collapsed": false
+    }
   ],
   "bookmarks": [
     {
-      "id": "bm-001",
-      "title": "GitHub",
-      "url": "https://github.com",
-      "description": "代码托管平台",
-      "categoryId": "cat-dev",
-      "tags": ["git", "代码"],
+      "id": "xcedisad",
+      "title": "谷歌",
+      "url": "https://www.google.com.hk",
+      "description": "",
+      "categoryId": "cat-common",
+      "tags": [
+        "搜索"
+      ],
       "icon": null,
-      "pinned": false,
-      "createdAt": "2026-09-02T10:00:00.000Z"
+      "pinned": false
     },
     {
-      "id": "bm-002",
-      "title": "Vue 3 文档",
-      "url": "https://vuejs.org",
-      "description": "Vue.js 官方文档",
-      "categoryId": "cat-dev",
-      "tags": ["vue", "文档"],
+      "id": "k3impz0w",
+      "title": "GPT 生图王者",
+      "url": "https://chatgpt.com",
+      "description": "",
+      "categoryId": "cat-common",
+      "tags": [
+        "AI"
+      ],
       "icon": null,
-      "pinned": false,
-      "createdAt": "2026-09-02T10:00:00.000Z"
+      "pinned": false
     },
     {
-      "id": "bm-003",
-      "title": "MDN Web Docs",
-      "url": "https://developer.mozilla.org",
-      "description": "Web 技术权威文档",
-      "categoryId": "cat-learn",
-      "tags": ["web", "文档"],
+      "id": "pbod6xln",
+      "title": "谷歌实验室",
+      "url": "https://labs.google.com",
+      "description": "谷歌实验室",
+      "categoryId": "cat-common",
+      "tags": [
+        "AI",
+        "工具"
+      ],
       "icon": null,
-      "pinned": false,
-      "createdAt": "2026-09-02T10:00:00.000Z"
+      "pinned": false
     },
     {
-      "id": "bm-004",
-      "title": "Stack Overflow",
-      "url": "https://stackoverflow.com",
-      "description": "开发者问答社区",
-      "categoryId": "cat-learn",
-      "tags": ["问答", "社区"],
+      "id": "88hjl18w",
+      "title": "即梦",
+      "url": "https://jimeng.jianying.com",
+      "description": "",
+      "categoryId": "cat-common",
+      "tags": [
+        "AI",
+        "生图"
+      ],
       "icon": null,
-      "pinned": false,
-      "createdAt": "2026-09-02T10:00:00.000Z"
+      "pinned": false
     },
     {
-      "id": "bm-005",
-      "title": "Google",
-      "url": "https://google.com",
-      "description": "搜索引擎",
-      "categoryId": "cat-daily",
-      "tags": ["搜索"],
+      "id": "f0g2kb82",
+      "title": "lovart",
+      "url": "https://lovart.ai",
+      "description": "",
+      "categoryId": "cat-common",
+      "tags": [
+        "AI",
+        "生图"
+      ],
       "icon": null,
-      "pinned": true,
-      "createdAt": "2026-09-02T10:00:00.000Z"
+      "pinned": false
     },
     {
-      "id": "bm-006",
-      "title": "Gmail",
-      "url": "https://mail.google.com",
-      "description": "Google 邮箱",
-      "categoryId": "cat-daily",
-      "tags": ["邮件"],
+      "id": "fzsv3bma",
+      "title": "筷子 AI生图",
+      "url": "https://pcp.kuaizi.co",
+      "description": "",
+      "categoryId": "cat-common",
+      "tags": [
+        "AI",
+        "生图"
+      ],
       "icon": null,
-      "pinned": false,
-      "createdAt": "2026-09-02T10:00:00.000Z"
+      "pinned": false
+    },
+    {
+      "id": "113guhfi",
+      "title": "Miora 腾讯妙境",
+      "url": "https://mirrors.tencent.com",
+      "description": "全场景创意智能体工作室",
+      "categoryId": "cat-common",
+      "tags": [
+        "AI"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "mnb6bx2x",
+      "title": "优能佳品牌智库",
+      "url": "https://docs.qq.com",
+      "description": "【腾讯文档】优能佳品牌智库",
+      "categoryId": "cat-ynj",
+      "tags": [
+        "品牌"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "5bd8fhml",
+      "title": "多能多品宣资料库",
+      "url": "https://docs.qq.com",
+      "description": "多能多品宣资料库",
+      "categoryId": "cat-ynj",
+      "tags": [
+        "品牌"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "mmzbpjkn",
+      "title": "花瓣网",
+      "url": "https://huaban.com",
+      "description": "图片素材",
+      "categoryId": "cat-material",
+      "tags": [
+        "素材"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "7urtvku4",
+      "title": "Pinterest 图片素材",
+      "url": "https://www.pinterest.com",
+      "description": "",
+      "categoryId": "cat-material",
+      "tags": [
+        "素材"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "2oohtnnr",
+      "title": "Dribbble 图片素材",
+      "url": "https://dribbble.com",
+      "description": "",
+      "categoryId": "cat-material",
+      "tags": [
+        "素材",
+        "设计"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "fxy17w0r",
+      "title": "哩布哩布AI",
+      "url": "https://liblib.art",
+      "description": "",
+      "categoryId": "cat-prompt",
+      "tags": [
+        "AI",
+        "提示词"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "c3vqs524",
+      "title": "meigen AI广告片提示词",
+      "url": "https://meigen.ai",
+      "description": "",
+      "categoryId": "cat-prompt",
+      "tags": [
+        "AI",
+        "提示词"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "3gujjlkk",
+      "title": "mkimage AI提示词",
+      "url": "https://mkimage.ai",
+      "description": "",
+      "categoryId": "cat-prompt",
+      "tags": [
+        "AI",
+        "提示词"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "377194jd",
+      "title": "prompthero AI提示词",
+      "url": "https://prompthero.com",
+      "description": "",
+      "categoryId": "cat-prompt",
+      "tags": [
+        "AI",
+        "提示词"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "burohnv9",
+      "title": "星妈AI排版",
+      "url": "https://xingmaai.top",
+      "description": "",
+      "categoryId": "cat-tools",
+      "tags": [
+        "排版",
+        "工具"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "ox6wuaho",
+      "title": "Figma 在线排版软件",
+      "url": "https://figma.com",
+      "description": "",
+      "categoryId": "cat-tools",
+      "tags": [
+        "设计",
+        "工具"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "kqjd4lp7",
+      "title": "即时设计",
+      "url": "https://js.design",
+      "description": "",
+      "categoryId": "cat-tools",
+      "tags": [
+        "设计",
+        "工具"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "b5p321oe",
+      "title": "在线图片编辑器",
+      "url": "https://www.photopea.com",
+      "description": "可批量编辑图片",
+      "categoryId": "cat-tools",
+      "tags": [
+        "图片",
+        "工具"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "23r0ow3c",
+      "title": "画板 Excalidraw",
+      "url": "https://excalidraw.com",
+      "description": "自由发挥",
+      "categoryId": "cat-tools",
+      "tags": [
+        "白板",
+        "工具"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "xdxn8j11",
+      "title": "Canva 在线设计",
+      "url": "https://www.canva.com",
+      "description": "长图 海报 社媒 易拉宝 随心编辑",
+      "categoryId": "cat-tools",
+      "tags": [
+        "设计",
+        "工具"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "3a12pvno",
+      "title": "AutoDraw 手绘生图",
+      "url": "https://autodraw.com",
+      "description": "",
+      "categoryId": "cat-design",
+      "tags": [
+        "AI",
+        "素材"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "h5si56jr",
+      "title": "iconfont 阿里巴巴矢量图标库",
+      "url": "https://www.iconfont.cn",
+      "description": "",
+      "categoryId": "cat-design",
+      "tags": [
+        "图标",
+        "素材"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "yparno7q",
+      "title": "UI世界 shadcn",
+      "url": "https://ui.shadcn.com",
+      "description": "各种界面设计",
+      "categoryId": "cat-design",
+      "tags": [
+        "UI",
+        "素材"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "2llaq9fl",
+      "title": "爱一番",
+      "url": "https://iyf.tv",
+      "description": "",
+      "categoryId": "cat-ent",
+      "tags": [
+        "视频"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "2lg3dxlp",
+      "title": "YouTube",
+      "url": "https://www.youtube.com",
+      "description": "视频网站",
+      "categoryId": "cat-ent",
+      "tags": [
+        "视频"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "orx9hkra",
+      "title": "X (Twitter)",
+      "url": "https://x.com",
+      "description": "",
+      "categoryId": "cat-ent",
+      "tags": [
+        "社交"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "gn0zzc2r",
+      "title": "XFLTD",
+      "url": "https://xfltd.org",
+      "description": "",
+      "categoryId": "cat-vpn",
+      "tags": [
+        "VPN"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "olnxvswn",
+      "title": "Telegram",
+      "url": "https://t.me",
+      "description": "机场",
+      "categoryId": "cat-vpn",
+      "tags": [
+        "VPN"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "2h5xowww",
+      "title": "梯子",
+      "url": "https://cute-cloud.com",
+      "description": "",
+      "categoryId": "cat-vpn",
+      "tags": [
+        "VPN"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "0gyfbyxs",
+      "title": "沙雕导航网",
+      "url": "https://shadiao.pro",
+      "description": "",
+      "categoryId": "cat-nav",
+      "tags": [
+        "导航"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "ary5y70v",
+      "title": "活动汪 方案",
+      "url": "https://eventwang.cn",
+      "description": "",
+      "categoryId": "cat-copy",
+      "tags": [
+        "文案",
+        "方案"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "7sfv0ssx",
+      "title": "视频特效网站",
+      "url": "https://unicorn.studio",
+      "description": "",
+      "categoryId": "cat-video",
+      "tags": [
+        "视频",
+        "特效"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "qic8jhpt",
+      "title": "在线生成矢量",
+      "url": "https://visioncortex.org",
+      "description": "",
+      "categoryId": "cat-svg",
+      "tags": [
+        "矢量",
+        "工具"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "pf2g8aid",
+      "title": "今日热点",
+      "url": "https://tophub.today",
+      "description": "",
+      "categoryId": "cat-news",
+      "tags": [
+        "新闻",
+        "热点"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "5txdhd26",
+      "title": "3D渲染器 包装设计",
+      "url": "https://pacdora.cn",
+      "description": "",
+      "categoryId": "cat-package",
+      "tags": [
+        "3D",
+        "包装"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "v4bfun08",
+      "title": "刀版生成器",
+      "url": "https://www.dieline.app",
+      "description": "",
+      "categoryId": "cat-package",
+      "tags": [
+        "包装",
+        "工具"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "nj78fxxb",
+      "title": "免费字体网站",
+      "url": "https://mianfeiziti.com",
+      "description": "",
+      "categoryId": "cat-font",
+      "tags": [
+        "字体"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "oqzk5df4",
+      "title": "品牌样机 LS Graphics",
+      "url": "https://ls.graphics",
+      "description": "",
+      "categoryId": "cat-mockup",
+      "tags": [
+        "样机",
+        "素材"
+      ],
+      "icon": null,
+      "pinned": false
+    },
+    {
+      "id": "dq6eu3yv",
+      "title": "免费插画 Sketch Valley",
+      "url": "https://sketchvalley.com",
+      "description": "",
+      "categoryId": "cat-mockup",
+      "tags": [
+        "插画",
+        "素材"
+      ],
+      "icon": null,
+      "pinned": false
     }
   ]
 }
