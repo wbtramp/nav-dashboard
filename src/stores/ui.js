@@ -26,6 +26,7 @@ export const useUiStore = defineStore('ui', () => {
   const activeModule = ref('navigation')
   const bannerCollapsed = ref(localStorage.getItem(BANNER_KEY) === 'true')
   const accentColor = ref(DEFAULT_ACCENT)
+  const activeCategoryId = ref('')
 
   const bookmarkDialog = ref({ open: false, editingId: null })
   const categoryDialog = ref({ open: false, editingId: null })
@@ -84,7 +85,7 @@ export const useUiStore = defineStore('ui', () => {
 
   return {
     searchQuery, activeTags, theme,
-    activeModule, bannerCollapsed, accentColor,
+    activeModule, bannerCollapsed, accentColor, activeCategoryId,
     bookmarkDialog, categoryDialog, loginDialog,
     toggleTag, clearFilters, setTheme, toggleBanner, applyTheme,
     setAccentColor, applyAccent,
