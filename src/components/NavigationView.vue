@@ -40,7 +40,7 @@
       </div>
 
       <template v-else-if="isFiltering">
-        <div v-if="filteredBookmarks.length" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+        <div v-if="filteredBookmarks.length" class="grid grid-cols-6 gap-3">
           <BookmarkCard
             v-for="bm in filteredBookmarks"
             :key="bm.id"
@@ -98,7 +98,7 @@
             ghost-class="sortable-ghost"
             drag-class="sortable-drag"
             group="bookmarks"
-            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3"
+            class="grid grid-cols-6 gap-3"
             @end="onDragEnd(cat.id)"
           >
             <BookmarkCard
