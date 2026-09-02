@@ -1,0 +1,6 @@
+export const GITHUB_OWNER = 'wbtramp'
+export const GITHUB_REPO = 'nav-dashboard'
+export const GITHUB_BRANCH = 'main'
+export const DATA_PATH = 'data/bookmarks.json'
+export const OWNER_LOGIN = 'wbtramp'
+export const PRIVATE_REPO = 'nav-dashboard-private'

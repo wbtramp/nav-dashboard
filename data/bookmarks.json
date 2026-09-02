@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-02T10:00:00.000Z",
+  "settings": {
+    "theme": "system",
+    "title": "我的导航"
+  },
+  "categories": [
+    { "id": "cat-dev", "name": "开发工具", "icon": "💻", "collapsed": false },
+    { "id": "cat-learn", "name": "学习资源", "icon": "📚", "collapsed": false },
+    { "id": "cat-daily", "name": "日常使用", "icon": "🌐", "collapsed": false }
+  ],
+  "bookmarks": [
+    {
+      "id": "bm-001",
+      "title": "GitHub",
+      "url": "https://github.com",
+      "description": "代码托管平台",
+      "categoryId": "cat-dev",
+      "tags": ["git", "代码"],
+      "icon": null,
+      "pinned": false,
+      "createdAt": "2026-09-02T10:00:00.000Z"
+    },
+    {
+      "id": "bm-002",
+      "title": "Vue 3 文档",
+      "url": "https://vuejs.org",
+      "description": "Vue.js 官方文档",
+      "categoryId": "cat-dev",
+      "tags": ["vue", "文档"],
+      "icon": null,
+      "pinned": false,
+      "createdAt": "2026-09-02T10:00:00.000Z"
+    },
+    {
+      "id": "bm-003",
+      "title": "MDN Web Docs",
+      "url": "https://developer.mozilla.org",
+      "description": "Web 技术权威文档",
+      "categoryId": "cat-learn",
+      "tags": ["web", "文档"],
+      "icon": null,
+      "pinned": false,
+      "createdAt": "2026-09-02T10:00:00.000Z"
+    },
+    {
+      "id": "bm-004",
+      "title": "Stack Overflow",
+      "url": "https://stackoverflow.com",
+      "description": "开发者问答社区",
+      "categoryId": "cat-learn",
+      "tags": ["问答", "社区"],
+      "icon": null,
+      "pinned": false,
+      "createdAt": "2026-09-02T10:00:00.000Z"
+    },
+    {
+      "id": "bm-005",
+      "title": "Google",
+      "url": "https://google.com",
+      "description": "搜索引擎",
+      "categoryId": "cat-daily",
+      "tags": ["搜索"],
+      "icon": null,
+      "pinned": true,
+      "createdAt": "2026-09-02T10:00:00.000Z"
+    },
+    {
+      "id": "bm-006",
+      "title": "Gmail",
+      "url": "https://mail.google.com",
+      "description": "Google 邮箱",
+      "categoryId": "cat-daily",
+      "tags": ["邮件"],
+      "icon": null,
+      "pinned": false,
+      "createdAt": "2026-09-02T10:00:00.000Z"
+    }
+  ]
+}
